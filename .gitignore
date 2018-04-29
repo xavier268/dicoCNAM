@@ -1,2 +1,4 @@
 all*
-
+target/**/*
+target/*
+target
