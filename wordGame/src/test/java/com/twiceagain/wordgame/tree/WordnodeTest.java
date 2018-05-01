@@ -6,6 +6,7 @@
 package com.twiceagain.wordgame.tree;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertNotNull;
@@ -20,15 +21,15 @@ import org.junit.Test;
  */
 public class WordnodeTest {
 
-    static final String FILENAME = "/home/xavier/Bureau/dicoCNAM/all-root-ascii.txt";
+
     static final Wordnode DICO = new Wordnode();
 
     public WordnodeTest() {
     }
 
     @BeforeClass
-    public static void setUpClass() throws IOException {
-        DICO.load(FILENAME);
+    public static void setUpClass() throws IOException, URISyntaxException {
+        DICO.load();
 
     }
 

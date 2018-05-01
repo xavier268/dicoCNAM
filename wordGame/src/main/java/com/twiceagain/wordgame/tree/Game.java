@@ -13,18 +13,13 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 /**
- * Utility class to compute scores and select moves. // TOTO : rapatrier la
- * logique des tours, le current, ..; (sauf saisie) // TODO indication
- * silencieuse des perspectives de gains ? // Flag win/lost ? // Justification
- * en allant jusqu'à un terminal ?// mettre les dicos en resource
- *
+ * Utility class to compute scores and select moves. 
  * @author xavier
  */
 public class Game {
 
     protected int totalNumberOfPlayers = 2;
     protected int playersBeforeComputer = 0; // (0 means first)
-    public static String FILENAME = "/home/xavier/Bureau/dicoCNAM/all-root-ascii.txt";
     public static Wordnode DICO = null;
     private static final Logger LOG = Logger.getLogger(Game.class.getName());
     private String current = "";
@@ -139,11 +134,12 @@ public class Game {
         Collections.shuffle(cl);
         for (Character c : cl) {
             if (computerWins(previous + c)) {
+                LOG.info("For information, I should normally WIN this game ...");        
                 return c;
             }
         }
 
-        LOG.info("For information, I should normally loose this game ...");
+        LOG.info("For information, I should normally LOOSE this game ...");
         for (Character c : cl) {            
                 return c;           
         }

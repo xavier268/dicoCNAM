@@ -35,20 +35,7 @@ public class Wordnode {
     public Wordnode() {
     }
 
-    /**
-     * Loads tree from file of words.
-     *
-     * @param fileName
-     * @throws java.io.IOException
-     */
-    @Deprecated
-    public void load(String fileName) throws IOException {
-
-        try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
-            stream.forEach(this::add);
-        }
-
-    }
+    
     /**
      * Load dictionnary from resources.
      * @throws java.io.IOException
@@ -60,9 +47,12 @@ public class Wordnode {
         System.out.printf("Url resource : %s \npath : %s\n", url, url.getPath());
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()))) {
             stream
+                    // filter out banned words
                     .filter(Words::valid)
                     .forEach(this::add);
         }
+        // add additions (unless they are banned)
+        Words.additions().stream().filter(Words::valid).forEach(this::add);
 
     }
 

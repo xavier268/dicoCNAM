@@ -5,25 +5,45 @@
  */
 package com.twiceagain.wordgame.tree;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Pattern;
+
 /**
- * Blocked words, and supplémentary words.
+ * Handle exceptions to the dictionnary (added words or banned words)
  *
  * @author xavier
  */
 public class Words {
 
     /**
-     * Chek validity of word read from dictionnary.
+     * Chcek (ban)  words read from dictionnary.
      *
      * @param w
      * @return
      */
     public static boolean valid(String w) {
-        return !(w == null
-                || "pc".equals(w)
-                || "bd".equals(w)
-                || "dl".equals(w)
-                || "km".equals(w));
+        Pattern pat = Pattern.compile( "^bd|pc"
+                + "|cm|dm|mm|km|hm"
+                + "|dl|cl|ml|kl|kt"
+                + "|vs"
+                + "$");
+        
+        return w != null && !w.isEmpty() && ! pat.matcher(w).matches();
+        
+    }
+    
+    /**
+     * Additions to the disctionnary.
+     * @return 
+     */
+    public static Set<String> additions() {
+        
+        HashSet<String> s = new HashSet<>();
+        s.add("quelle");
+        s.add("laquelle");
+        
+        return s;
     }
 
 }
