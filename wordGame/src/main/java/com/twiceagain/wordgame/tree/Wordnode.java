@@ -5,15 +5,13 @@
  */
 package com.twiceagain.wordgame.tree;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 /**
  * Tree shaped data structure for words.
@@ -26,8 +24,6 @@ public class Wordnode {
     Wordnode parent = null;
     int depth = 0;
     private static final Logger LOG = Logger.getLogger(Wordnode.class.getName());
-    
-    
 
     /**
      * Construct empty tree
@@ -35,18 +31,17 @@ public class Wordnode {
     public Wordnode() {
     }
 
-    
     /**
      * Load dictionnary from resources.
+     *
      * @throws java.io.IOException
-     * @throws java.net.URISyntaxException
-     */
-    public void load() throws  URISyntaxException, IOException {
-        URL url = Thread.currentThread().getContextClassLoader().getResource("all-root-ascii.txt");
-        url.getPath();
-        System.out.printf("Url resource : %s \npath : %s\n", url, url.getPath());
-        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()))) {
-            stream
+     */    
+    public void load() throws IOException {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(
+                Thread.currentThread().getContextClassLoader().getResourceAsStream("all-root-ascii.txt"),
+                Charset.forName("UTF8")))) {
+            in
+                    .lines()
                     // filter out banned words
                     .filter(Words::valid)
                     .forEach(this::add);
@@ -83,7 +78,7 @@ public class Wordnode {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n");     
+        sb.append("\n");
         for (Character c : children.keySet()) {
             for (int i = depth; i >= 0; i--) {
                 sb.append(" |");
@@ -114,15 +109,14 @@ public class Wordnode {
         }
         return w;
     }
-    
+
     /**
      * Does the node have children ?
-     * @return 
+     *
+     * @return
      */
     public boolean hasChildren() {
         return !(children == null || children.isEmpty());
     }
-    
-    
-   
+
 }
