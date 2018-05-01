@@ -22,7 +22,7 @@ public class Play {
      * @throws java.net.URISyntaxException
      */
     public static void main(String[] args) throws IOException, URISyntaxException {
-        System.out.printf("\nWelcome to the 'car de singe' demo - (c) Xavier Gandillot 2018\n");
+        System.out.printf("\nQuart de Singe - (c) Xavier Gandillot 2018\n");
         Game game = new Game(2, 1);   
         System.out.printf("-->%s< \n", game.play(null));
         while (true) {

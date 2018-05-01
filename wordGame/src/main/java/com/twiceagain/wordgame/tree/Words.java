@@ -26,7 +26,7 @@ public class Words {
         Pattern pat = Pattern.compile( "^bd|pc"
                 + "|cm|dm|mm|km|hm"
                 + "|dl|cl|ml|kl|kt"
-                + "|vs"
+                + "|vs|cf"
                 + "$");
         
         return w != null && !w.isEmpty() && ! pat.matcher(w).matches();
