@@ -26,6 +26,7 @@ public class Words {
         Pattern pat = Pattern.compile( "^bd|pc"
                 + "|cm|dm|mm|km|hm"
                 + "|dl|cl|ml|kl|kt"
+                + "|kg|hg|cg|dg"
                 + "|vs|cf"
                 + "$");
         
