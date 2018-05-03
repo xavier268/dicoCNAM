@@ -1,4 +1,4 @@
-all*
+
 target/**/*
 target/*
 target
